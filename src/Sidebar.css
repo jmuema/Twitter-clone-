@@ -25,4 +25,7 @@
   height: 50px !important;
   margin-top: 20px !important;
 }
+.sidebar > h2 {
+    color: red;
+}
 

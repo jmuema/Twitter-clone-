@@ -8,14 +8,11 @@ function App() {
   return (
     //BEM
     <div className="app">
- {/* Sidebar */}
-<Sidebar/>
+      <Sidebar />
 
-{/* Feed */}
-<Feed/>
+      <Feed />
 
-{/* Widgets */}
-<Widgets />
+      <Widgets />
 
 
     </div>
