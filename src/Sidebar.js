@@ -30,7 +30,7 @@ function Sidebar() {
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
         Tweet
       </Button>
-      <h2> TWEETER CLONE BY MUEMA 🤓</h2>
+      {/* <h2> TWEETER CLONE BY MUEMA <span role="img">🤓</span></h2> */}
     </div>
   );
 }
