@@ -1,24 +1,59 @@
-import React from 'react';
-import './TweetBox.css';
+import React, { useState } from "react";
+import "./TweetBox.css";
 import { Avatar, Button } from "@material-ui/core";
+import db from "./firebase";
 
 function TweetBox() {
-    return (
-        <div className="tweetBox">
-         <form>
-             <div className="tweetBox__input">
-                 <Avatar src="https://lh3.googleusercontent.com/proxy/SW7-8z5FoTF4yw-BHAk9dA0SIKV0EF9vW4Mwg2IVCPO-qwnk00NNOM4mauoZTOV9Aez-Y5qEHusP0TXEnddiJVLk5_HxkxJrTI0R7xQDDzrjJssQtqQNOQ " />
-                 <input placeholder="What is happening?"/>
-             </div>
-             <input 
-             className="tweetBox__imageInput"
-             placeholder="Enter image URL"
-             type="text"
-             />
-             <Button className="tweetBox__tweetButton"> Tweet </Button>
-         </form>   
+  const [tweetMessage, setTweetMessage] = useState("");
+  const [tweetImage, setTweetImage] = useState("");
+
+  const sendTweet = (e) => {
+    e.preventDefault();
+
+    db.collection("posts").add({
+      displayName: "Muema",
+      username: "ulemkamba254",
+      verified: true,
+      text: tweetMessage,
+      image: tweetImage,
+      avatar:
+        "https://lh3.googleusercontent.com/proxy/w_NkC9_DUNtfMvBS_ofDV9CKixdIqcC2J8yFbHbdJpi0amy6yMqHLe2PPFfdk-T-LIQ125uaIb4KfCgiEZYFzk9m64VDmZFclmdnW-_GGNGVR1Q5xIAH8A",
+    });
+
+    setTweetMessage("");
+    setTweetImage("");
+  };
+
+  return (
+    <div className="tweetBox">
+      <form>
+        <div className="tweetBox__input">
+          <Avatar src="https://lh3.googleusercontent.com/proxy/w_NkC9_DUNtfMvBS_ofDV9CKixdIqcC2J8yFbHbdJpi0amy6yMqHLe2PPFfdk-T-LIQ125uaIb4KfCgiEZYFzk9m64VDmZFclmdnW-_GGNGVR1Q5xIAH8A" />
+          <input
+            onChange={(e) => setTweetMessage(e.target.value)}
+            value={tweetMessage}
+            placeholder="What's happening?"
+            type="text"
+          />
         </div>
-    )
+        <input
+          value={tweetImage}
+          onChange={(e) => setTweetImage(e.target.value)}
+          className="tweetBox__imageInput"
+          placeholder="Optional: Enter image URL"
+          type="text"
+        />
+
+        <Button
+          onClick={sendTweet}
+          type="submit"
+          className="tweetBox__tweetButton"
+        >
+          Tweet
+        </Button>
+      </form>
+    </div>
+  );
 }
 
-export default TweetBox
+export default TweetBox;
